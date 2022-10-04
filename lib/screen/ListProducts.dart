@@ -55,7 +55,7 @@ class _ListProductsState extends State<ListProducts> {
             leading: Icon(Icons.local_pizza,
             color: Colors.brown),
             title:Text('Pizza') ,
-            subtitle: Text('15 unidades                                              \$1000'),
+            subtitle: Text('7 unidades                                              \$1000'),
           ),
           Divider(
             thickness: 1.5,
