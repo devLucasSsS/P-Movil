@@ -22,18 +22,17 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.deepPurpleAccent,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.construction),
+            icon: Icon(Icons.construction, color: Colors.white,),
             label: 'Crear',
-            backgroundColor: Colors.red,
             
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list_alt_outlined),
             label: 'Listar',
-            backgroundColor: Colors.red
+            backgroundColor: Colors.white
           ),
         ],
         currentIndex: _currentIndex,
