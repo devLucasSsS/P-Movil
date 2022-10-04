@@ -13,7 +13,7 @@ class _CreateProductState extends State<CreateProduct> {
       appBar: AppBar(
         title: Text('Crear un producto'),
         leading: Icon(Icons.construction),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.deepPurpleAccent,
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
