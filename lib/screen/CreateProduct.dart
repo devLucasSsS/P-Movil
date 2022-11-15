@@ -34,12 +34,19 @@ class _CreateProductState extends State<CreateProduct> {
                 hintText: 'Ingresa el stock',
               ),
             ),
-            Text('Ingresa el precio del producto:',style: TextStyle(fontSize: 20),),
+            Text('Ingresa el precio del producto:',style: TextStyle(fontSize: 20), textAlign: TextAlign.left,),
             TextFormField(
                 keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Ingresa el precio',
+              ),
+            ),
+            Text('Ingresa la imagen del producto:',style: TextStyle(fontSize: 20),),
+            TextFormField(
+                keyboardType: TextInputType.none,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
               ),
             ),
             Text('Ingresa el estado del producto:',style: TextStyle(fontSize: 20),),
@@ -62,7 +69,6 @@ class _CreateProductState extends State<CreateProduct> {
           ],
         ),
       ),
-
     );
   }
 }

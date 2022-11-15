@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/ListProducts.dart';
 import 'package:flutter_application_1/screen/CreateProduct.dart';
+import 'package:flutter_application_1/screen/ListProducts.dart';
 import 'ListProducts.dart';
 import 'CreateProduct.dart';
 
@@ -30,9 +30,8 @@ class _BottomNavState extends State<BottomNav> {
             
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt_outlined),
+            icon: Icon(Icons.list_alt_outlined, color: Colors.white,),
             label: 'Listar',
-            backgroundColor: Colors.white
           ),
         ],
         currentIndex: _currentIndex,
