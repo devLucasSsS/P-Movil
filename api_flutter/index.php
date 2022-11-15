@@ -10,16 +10,16 @@ function CrearProducto(){
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
     $data = json_decode(file_get_contents("php://input"));
+    $cod = $data->codigo;
     $nombre = $data->nombre;
     $stock = $data->stock;
-    $imagen = $data->imagen;
     $estado = $data->estado;
     $sql = "SELECT * FROM productos where nombre_producto = '$nombre'";
     $query = $conexion -> query($sql);
     if($query->rowCount()){
         echo json_encode(["success"=>0]);
     }else{
-        $sql = "INSERT INTO productos (nombre_producto, stock_producto, stock_critico_producto, precio_producto, imagen_producto, estado_producto) VALUES ('$nombre', $stock, $stock_critico, $precio, '$imagen', '$estado')";
+        $sql = "INSERT INTO medicamentos (codmedicamento, nombre, precio,stock,estado) VALUES ('$cod','$nombre', $precio,$stock,'$estado')";
         $query = $conexion -> query($sql);
         echo json_encode(["success"=>1]);
         exit();
