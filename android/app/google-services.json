@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "793753544727",
+    "project_id": "proyecto-movil-33d7f",
+    "storage_bucket": "proyecto-movil-33d7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793753544727:android:d6458d5733489cf10dd452",
+        "android_client_info": {
+          "package_name": "pmovil.p302"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793753544727-vubfdqvpkm8qvqtctd4jpq271foermie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQRaZ1nJR45Bu2lhbZgIBv8b7mRnNy_YQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793753544727-vubfdqvpkm8qvqtctd4jpq271foermie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
