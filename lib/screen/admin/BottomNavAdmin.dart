@@ -25,6 +25,7 @@ class _BottomNavAdminState extends State<BottomNavAdmin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 86, 233, 172),
         title: Text('ADMINISTRADOR'),
           actions: [PopupMenuButton(
           itemBuilder: (context)=>[
@@ -39,18 +40,21 @@ class _BottomNavAdminState extends State<BottomNavAdmin> {
             }
           },
         )],
+        
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Color.fromARGB(255, 86, 233, 172),
+        selectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.construction, color: Colors.white,),
+            icon: Icon(Icons.construction,),
             label: 'Productos',
+            
             
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt_outlined, color: Colors.white,),
+            icon: Icon(Icons.list_alt_outlined),
             label: 'Pedidos',
           ),
         ],

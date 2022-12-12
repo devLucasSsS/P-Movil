@@ -19,18 +19,41 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.lightGreen.shade50,
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(255, 151, 240, 203),
+            Color.fromARGB(255, 86, 233, 172),
+            Colors.black
+          ]
+        )
+      ),
+    child: Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 30),
+          margin: EdgeInsets.symmetric(horizontal: 50),
           width: double.infinity,
-          height: 300,
+          height: 235,
           decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                color: Colors.lightGreen,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  // Colors.deepPurple,
+                  // Color.fromARGB(255, 230, 50, 110),
+                  // Color.fromARGB(255, 42, 153, 243),
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 86, 233, 172),
+                ]
               ),
+              // color: Colors.pink.shade200,
+              // border: Border.all(
+              //   color: Colors.lightGreen,
+              // ),
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -40,20 +63,22 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     'Inicio de sesión',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
                   ),
                   Spacer(),
                   TextFormField(
                     controller: emailCtrl,
                     decoration: InputDecoration(
                       label: Text('Email'),
+                      
+                      
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   TextFormField(
                     controller: passwordCtrl,
                     decoration: InputDecoration(
-                      label: Text('Password'),
+                      label: Text('Contraseña'),
                     ),
                     obscureText: true,
                   ),
@@ -62,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                      child: Text('INICIAR SESIÓN'),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 86, 233, 172),),
+                      child: Text('INICIAR SESIÓN', style: TextStyle(fontWeight: FontWeight.bold,),),
                       onPressed: () => login(),
                     ),
                   ),
@@ -75,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: Text(
                       error,
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Spacer(),
@@ -85,19 +110,16 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    )
     );
   }
 
   void login() async {
     try {
-      //intentar hacer login
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailCtrl.text.trim(),
         password: passwordCtrl.text.trim(),
       );
-
-      //si llego acá las credenciales estaban ok
-      //guardar user email
       SharedPreferences sp = await SharedPreferences.getInstance();
       sp.setString('userEmail', userCredential.user!.email.toString());
       
@@ -114,7 +136,6 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(context, route);
       }
     } on FirebaseAuthException catch (ex) {
-      //si el login no es válido llegamos acá
       switch (ex.code) {
         case 'user-not-found':
           error = 'Usuario no existe';
@@ -126,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
           error = 'Cuenta desactivada';
           break;
         default:
-          error = ex.message.toString();
+          error = 'Campos vacios';
           break;
       }
       setState(() {});

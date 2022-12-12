@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/services/firestore_service.dart';
 class CreateProduct extends StatefulWidget {
@@ -19,6 +20,7 @@ class _CreateProductState extends State<CreateProduct> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Agregar Producto'),
+        backgroundColor: Color.fromARGB(255, 86, 233, 172),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -49,7 +51,7 @@ class _CreateProductState extends State<CreateProduct> {
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   child: Text('Agregar Producto'),
                   onPressed: () => create(context),
                 ),
@@ -84,6 +86,9 @@ class _CreateProductState extends State<CreateProduct> {
           price,
         );
         Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Producto Agregado'))
+        );
       }
     }
   }

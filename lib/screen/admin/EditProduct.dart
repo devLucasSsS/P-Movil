@@ -20,6 +20,7 @@ class _EditProductState extends State<EditProduct> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Editar Producto'),
+        backgroundColor: Color.fromARGB(255, 86, 233, 172),
       ),
       body: StreamBuilder(
         stream: FirestoreService().producto(widget.nombre),
@@ -62,7 +63,7 @@ class _EditProductState extends State<EditProduct> {
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+                  style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 48, 46, 46)),
                   child: Text('Editar Producto'),
                   onPressed: () {
                     int stock = int.tryParse(stockCtrl.text.trim()) ?? 0;
@@ -74,6 +75,9 @@ class _EditProductState extends State<EditProduct> {
                       price,
                     );
                     Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Producto Editado'))
+                    );
                   },
                 ),
               ),

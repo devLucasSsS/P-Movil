@@ -10,8 +10,10 @@ class ListProductsAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: Text('PRODUCTOS'),
+        title: Text('PRODUCTOS',),
+        backgroundColor: Color.fromARGB(255, 48, 46, 46),
 
       ),
       body: StreamBuilder(
@@ -33,6 +35,9 @@ class ListProductsAdmin extends StatelessWidget {
                 trailing: Text('Precio:${product['price'].toString()}'),
                 onLongPress: () {
                   FirestoreService().borrar(product.id);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Producto eliminado'))
+        );
                 },
                 onTap: () {
                   var nombre = product['name'];
@@ -46,6 +51,7 @@ class ListProductsAdmin extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 48, 46, 46),
         child: Icon(Icons.add),
         onPressed: () {
           MaterialPageRoute route = MaterialPageRoute(builder: ((context) => CreateProduct()));

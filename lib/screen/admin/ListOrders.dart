@@ -13,6 +13,7 @@ class ListOrders extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('PEDIDOS'),
+        backgroundColor: Color.fromARGB(255, 48, 46, 46),
       ),
       body: StreamBuilder(
         stream: FirestoreService().pedidos(),
@@ -36,13 +37,6 @@ class ListOrders extends StatelessWidget {
               );
             },
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          MaterialPageRoute route = MaterialPageRoute(builder: ((context) => CreateProduct()));
-          Navigator.push(context, route);
         },
       ),
     );
