@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/CreateProduct.dart';
+import 'package:flutter_application_1/screen/admin/CreateProduct.dart';
 import 'package:flutter_application_1/screen/ListProducts.dart';
 import 'ListProducts.dart';
-import 'CreateProduct.dart';
+import 'admin/CreateProduct.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});

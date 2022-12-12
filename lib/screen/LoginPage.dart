@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/ListProducts.dart';
+import 'package:flutter_application_1/screen/admin/BottomNavAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -99,12 +100,19 @@ class _LoginPageState extends State<LoginPage> {
       //guardar user email
       SharedPreferences sp = await SharedPreferences.getInstance();
       sp.setString('userEmail', userCredential.user!.email.toString());
-
-      //redirigir al home
+      
+      var id = await FirebaseAuth.instance.currentUser!;
+      if(id.uid == '7wHdVrUCs0aDMhRGq0VjKDgZ5js2'){
+        MaterialPageRoute route = MaterialPageRoute(
+          builder: (context) => BottomNavAdmin(),
+        );
+      Navigator.pushReplacement(context, route);
+      }else{
       MaterialPageRoute route = MaterialPageRoute(
         builder: (context) => ListProducts(),
       );
       Navigator.pushReplacement(context, route);
+      }
     } on FirebaseAuthException catch (ex) {
       //si el login no es válido llegamos acá
       switch (ex.code) {
