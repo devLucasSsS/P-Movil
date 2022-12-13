@@ -2,44 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/ListProducts.dart';
 import 'package:flutter_application_1/screen/OrderPage.dart';
 
-void main() => runApp(const BottomNavUser());
 
 class BottomNavUser extends StatefulWidget {
   const BottomNavUser({super.key});
 
   @override
-  State<BottomNavUser> createState() => _MyAppState();
+  State<BottomNavUser> createState() => _BottomNavState();
 }
 
-class _MyAppState extends State<BottomNavUser> {
-  int _paginaActual = 0;
-
-  List<Widget> _paginas = [
+class _BottomNavState extends State<BottomNavUser> {
+  int _currentIndex = 0;
+  List<Widget> _pages = [
     ListProducts(),
     OrderPage(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
-        body: _paginas[_paginaActual],
+        body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.yellow,
-          onTap: (index) {
-            setState(() {
-              _paginaActual = index;
-            });
-          },
-          currentIndex: _paginaActual,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.inventory_2), label: "Productos"),
-            BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "Orden"),
-          ],
-        ),
+        backgroundColor: Colors.yellow,
+        selectedItemColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2,),
+            label: 'Productos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt),
+            label: 'Orden',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (index){
+          print(index);
+          setState(() {
+            _currentIndex = index;
+          });
+        }
+      ),
       ),
     );
   }

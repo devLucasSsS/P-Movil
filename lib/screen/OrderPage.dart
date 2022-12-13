@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/BottomNavUser.dart';
+import 'package:flutter_application_1/screen/ListProducts.dart';
 import 'package:flutter_application_1/screen/services/firestore_service.dart';
-
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
 
@@ -11,12 +12,13 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController nameClientCtrl = TextEditingController();
-  TextEditingController nameProductCtrl = TextEditingController();
+  TextEditingController nameCCtrl = TextEditingController();
+  TextEditingController namePCtrl = TextEditingController();
   TextEditingController cantCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow,
           title: Text(
@@ -26,6 +28,7 @@ class _OrderPageState extends State<OrderPage> {
         ),
         body: SingleChildScrollView(
           child: Form(
+            key: formKey,
             child: Column(
               children: <Widget>[
                 _crearInput1(),
@@ -40,13 +43,14 @@ class _OrderPageState extends State<OrderPage> {
                 SizedBox(
                   height: 30,
                 ),
-                MaterialButton(
-                  color: Colors.black,
+                ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   child: Text(
                     'Enviar',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed:() => create(context),
+                  onPressed: () => create(context),
                 )
               ],
             ),
@@ -57,7 +61,7 @@ class _OrderPageState extends State<OrderPage> {
     return Container(
       padding: EdgeInsets.all(15),
       child: TextFormField(
-        controller: nameClientCtrl,
+        controller: nameCCtrl,
         decoration: InputDecoration(
             icon: Icon(Icons.person),
             labelText: 'Nombre del cliente',
@@ -70,7 +74,7 @@ class _OrderPageState extends State<OrderPage> {
     return Container(
       padding: EdgeInsets.all(15),
       child: TextFormField(
-        controller: nameProductCtrl,
+        controller: namePCtrl,
         decoration: InputDecoration(
             icon: Icon(Icons.sell),
             labelText: 'Nombre del producto',
@@ -84,6 +88,7 @@ class _OrderPageState extends State<OrderPage> {
       padding: EdgeInsets.all(15),
       child: TextFormField(
         controller: cantCtrl,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
             icon: Icon(Icons.add_shopping_cart),
             labelText: 'Cantidad del producto',
@@ -94,19 +99,15 @@ class _OrderPageState extends State<OrderPage> {
     void create(context) async{
 
       int cant = int.tryParse(cantCtrl.text.trim()) ?? 0;
-      var nombre = nameClientCtrl.text.trim();
-      var producto = nameProductCtrl.text.trim();
+      var nombre = nameCCtrl.text.trim();
+      var producto= namePCtrl.text.trim();
       if(nombre == ''){
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Error, el nombre no puede estar vacio'))
         );
-      }else if(producto == ''){
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Error, el nombre del producto no puede estar vacio'))
-        );
       }else if(cant < 1){
                 ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Error, la cantidad no puede ser 0'))
+          const SnackBar(content: Text('Error, el stock no puede ser 0'))
         );
       }else{
         FirestoreService().agregarPedido(
@@ -114,14 +115,11 @@ class _OrderPageState extends State<OrderPage> {
           producto,
           cant
         );
-        Navigator.pop(context);
+        MaterialPageRoute route = MaterialPageRoute(builder: ((context) => BottomNavUser()));
+        Navigator.pushReplacement(context, route);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Pedido Agendado'))
+          const SnackBar(content: Text('Producto Agregado'))
         );
       }
     }
   }
-
-  
-  
-
