@@ -33,7 +33,7 @@ class ListOrders extends StatelessWidget {
                 subtitle: 
                       Text('Producto: '+Order['producto'] + '\n'
                       'Cantidad: ${Order['cantidad'].toString()}'),
-                trailing: Text('Total:${Order['total'].toString()}'),
+                // trailing: Text('Total:${Order['total'].toString()}'),
               );
             },
           );
