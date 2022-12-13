@@ -22,26 +22,30 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurpleAccent,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.construction, color: Colors.white,),
-            label: 'Crear',
-            
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt_outlined, color: Colors.white,),
-            label: 'Listar',
-          ),
-        ],
-        currentIndex: _currentIndex,
-        onTap: (index){
-          print(index);
-          setState(() {
-            _currentIndex = index;
-          });
-        }
-      ),
+          backgroundColor: Colors.deepPurpleAccent,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.construction,
+                color: Colors.white,
+              ),
+              label: 'Crear',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list_alt_outlined,
+                color: Colors.white,
+              ),
+              label: 'Listar',
+            ),
+          ],
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            print(index);
+            setState(() {
+              _currentIndex = index;
+            });
+          }),
     );
   }
 }
